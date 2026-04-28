@@ -1,0 +1,60 @@
+# QUICK START GUIDE - SF Production Kanban
+
+## ⚡ Cara Mulai (Paling Cepat)
+
+### Option 1: Buka Langsung di Browser
+```
+1. Buka Windows Explorer
+2. Navigasi ke: C:\Users\pw0kc\Desktop\SF Project
+3. Double-click file: index.html
+4. Browser akan membuka aplikasi
+```
+
+### Option 2: Jalankan via Node.js (Bisa diakses dari device lain)
+```
+1. Buka Command Prompt
+2. Ketik: cd C:\Users\pw0kc\Desktop\SF Project
+3. Ketik: npm install
+4. Ketik: npm start
+5. Buka browser ke: http://localhost:3000
+```
+
+## 🎮 Cara Menggunakan Aplikasi
+
+```
+1. LIHAT tabel kanban dengan 4 line (E3, E4, E5, E6) × 6 jam
+2. KLIK salah satu lingkaran
+3. PILIH status dari popup:
+   • OK (Hijau) - Production Selesai
+   • YELLOW (Kuning) - 50%+
+   • RED (Merah) - Under 50%
+   • EMPTY (Kosong) - Reset
+4. LINGKARAN BERUBAH WARNA dan data otomatis tersimpan
+```
+
+## ✅ File yang Sudah Dibuat
+
+- ✓ index.html - Halaman utama
+- ✓ style.css - Desain & styling  
+- ✓ script.js - Logika interaktif
+- ✓ server.js - Web server Node.js
+- ✓ package.json - Konfigurasi dependencies
+- ✓ README.md - Dokumentasi lengkap
+
+## 📱 Akses dari Device Lain
+
+Jika sudah jalankan server:
+1. Cari IP komputer Anda: Buka CMD → ketik `ipconfig` → lihat IPv4 Address
+2. Di device lain, buka: http://[IP]:3000
+   Contoh: http://192.168.1.100:3000
+
+## 🔧 Customization
+
+Ingin mengubah jumlah line atau jam? Edit file `script.js` baris 1-2:
+```javascript
+const LINES = ['E3', 'E4', 'E5', 'E6']; // Tambah/kurangi line di sini
+const JAMS = ['JAM 1', 'JAM 2', 'JAM 3', 'JAM 4', 'JAM 5', 'JAM 6']; // Tambah/kurangi jam di sini
+```
+
+---
+**Enjoy! 🎉**

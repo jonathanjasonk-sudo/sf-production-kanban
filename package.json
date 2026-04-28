@@ -1,0 +1,22 @@
+{
+  "name": "sf-production-kanban",
+  "version": "1.0.0",
+  "description": "Interactive Hourly Production Kanban Status System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "kanban",
+    "production",
+    "status"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "socket.io": "^4.5.4"
+  }
+}

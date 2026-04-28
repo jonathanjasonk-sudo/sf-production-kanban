@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hourly Production Kanban Status</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button id="resetBtn" class="reset-btn" title="Reset semua data">
+                <span>🔄</span>
+            </button>
+            <div class="logo-section">
+                <img src="LOGO DIAMOND HD.png" alt="Diamond Logo" class="diamond-logo">
+                <div class="company-info">
+                    <h2>PT DIAMOND INTERNATIONAL INDONESIA</h2>
+                    <p>Production Status Monitoring System</p>
+                </div>
+            </div>
+            <div class="live-indicator">
+                <span id="connectionDot" class="connection-dot online"></span>
+                <span id="connectionText">LIVE</span>
+            </div>
+            <h1>HOURLY PRODUCTION KANBAN STATUS</h1>
+            <div class="info">
+                <span>🟢 HIJAU - SF OK</span>
+                <span>🟢 HIJAU OK - Diambil Produksi</span>
+                <span>🟡 KUNING - ≥50%</span>
+                <span>🔴 MERAH - <50%</span>
+            </div>
+        </div>
+
+        <div class="kanban-board">
+            <table class="status-table">
+                <thead>
+                    <tr>
+                        <th>LINE</th>
+                        <th>JAM 1</th>
+                        <th>JAM 2</th>
+                        <th>JAM 3</th>
+                        <th>JAM 4</th>
+                        <th>JAM 5</th>
+                        <th>JAM 6</th>
+                        <th>JAM 7</th>
+                        <th>JAM 8</th>
+                        <th>JAM 9</th>
+                        <th>JAM 10</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Rows akan di-generate oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal untuk memilih status -->
+    <div id="statusModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Pilih Status</h2>
+            <div class="status-options">
+                <button class="status-btn green-ok-btn" data-status="GREEN-OK">
+                    <span class="circle green-ok"></span>
+                    <span>HIJAU OK - Diambil Produksi</span>
+                </button>
+                <button class="status-btn green-btn" data-status="GREEN">
+                    <span class="circle green"></span>
+                    <span>HIJAU - SF OK</span>
+                </button>
+                <button class="status-btn yellow-btn" data-status="YELLOW">
+                    <span class="circle yellow"></span>
+                    <span>KUNING - ≥50%</span>
+                </button>
+                <button class="status-btn red-btn" data-status="RED">
+                    <span class="circle red"></span>
+                    <span>MERAH - <50%</span>
+                </button>
+                <button class="status-btn empty-btn" data-status="EMPTY">
+                    <span class="circle empty"></span>
+                    <span>KOSONG - Reset</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>
