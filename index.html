@@ -9,25 +9,33 @@
 <body>
     <div class="container">
         <div class="header">
-            <button id="resetBtn" class="reset-btn" title="Reset semua data">
-                <span>🔄</span>
-            </button>
-            <button id="switchSectionBtn" class="switch-section-btn" title="Ganti area">
-                <span>🔀</span>
-            </button>
-            <div class="logo-section">
-                <img src="LOGO DIAMOND HD.png" alt="Diamond Logo" class="diamond-logo">
-                <div class="company-info">
-                    <h2>PT DIAMOND INTERNATIONAL INDONESIA</h2>
-                    <p>Production Status Monitoring System</p>
+            <div class="header-top">
+                <div class="header-left">
+                    <button id="switchSectionBtn" class="header-btn switch-section-btn" title="Ganti area">
+                        <span>🔀</span>
+                    </button>
+                    <button id="resetBtn" class="header-btn reset-btn" title="Reset semua data">
+                        <span>🔄</span>
+                    </button>
                 </div>
-            </div>
-            <div class="section-indicator">
-                <span id="sectionLabel" class="section-label">Treatment Area</span>
-            </div>
-            <div class="live-indicator">
-                <span id="connectionDot" class="connection-dot online"></span>
-                <span id="connectionText">LIVE</span>
+                <div class="header-center">
+                    <div class="logo-section">
+                        <img src="LOGO DIAMOND HD.png" alt="Diamond Logo" class="diamond-logo">
+                        <div class="company-info">
+                            <h2>PT DIAMOND INTERNATIONAL INDONESIA</h2>
+                            <p>Production Status Monitoring System</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="section-indicator">
+                        <span id="sectionLabel" class="section-label">Treatment Area</span>
+                    </div>
+                    <div class="live-indicator">
+                        <span id="connectionDot" class="connection-dot online"></span>
+                        <span id="connectionText">LIVE</span>
+                    </div>
+                </div>
             </div>
             <h1>HOURLY PRODUCTION KANBAN STATUS</h1>
             <div class="info">
