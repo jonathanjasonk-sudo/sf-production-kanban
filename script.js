@@ -74,6 +74,9 @@ function getStorageKey() {
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
+    // Setup section selection buttons FIRST
+    setupSectionButtons();
+    
     // Check if section is already selected
     const savedSection = localStorage.getItem(SECTION_KEY);
     
@@ -89,6 +92,16 @@ document.addEventListener('DOMContentLoaded', () => {
         showSectionModal();
     }
 });
+
+// Setup section selection buttons (must be called in DOMContentLoaded)
+function setupSectionButtons() {
+    if (treatmentBtn) {
+        treatmentBtn.onclick = selectTreatment;
+    }
+    if (stockfitBtn) {
+        stockfitBtn.onclick = selectStockfit;
+    }
+}
 
 // Show section selection modal
 function showSectionModal() {
@@ -239,9 +252,6 @@ function setupEventListeners() {
     switchSectionBtn.onclick = () => {
         showSectionModal();
     };
-    
-    treatmentBtn.onclick = selectTreatment;
-    stockfitBtn.onclick = selectStockfit;
 }
 
 // Update status
