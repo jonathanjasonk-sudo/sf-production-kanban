@@ -1,11 +1,14 @@
 // Configuration
 const LINES = ['E3', 'E4', 'E5', 'E6'];
 const JAMS = ['JAM 1', 'JAM 2', 'JAM 3', 'JAM 4', 'JAM 5', 'JAM 6', 'JAM 7', 'JAM 8', 'JAM 9', 'JAM 10'];
-const STORAGE_KEY = 'kanban_status';
+const STORAGE_KEY_TREATMENT = 'kanban_status_treatment';
+const STORAGE_KEY_STOCKFIT = 'kanban_status_stockfit';
+const SECTION_KEY = 'current_section';
 
 // Initialize data
 let kanbanData = {};
 let selectedCell = null;
+let currentSection = null; // 'TREATMENT' or 'STOCKFIT'
 
 // WebSocket connection
 let socket = null;
@@ -14,13 +17,22 @@ const connectionText = document.getElementById('connectionText');
 
 // DOM Elements
 const modal = document.getElementById('statusModal');
+const sectionModal = document.getElementById('sectionModal');
 const closeBtn = document.querySelector('.close');
 const tableBody = document.getElementById('tableBody');
 const statusButtons = document.querySelectorAll('.status-btn');
 const resetBtn = document.getElementById('resetBtn');
+const switchSectionBtn = document.getElementById('switchSectionBtn');
+const treatmentBtn = document.getElementById('treatmentBtn');
+const stockfitBtn = document.getElementById('stockfitBtn');
+const sectionLabel = document.getElementById('sectionLabel');
 
 // Initialize Socket.IO Connection
 function initializeSocket() {
+    if (socket) {
+        socket.disconnect();
+    }
+    
     socket = io();
     
     socket.on('connect', () => {
@@ -37,20 +49,100 @@ function initializeSocket() {
         connectionText.style.color = '#e74c3c';
     });
     
-    // Listen untuk update data dari server
-    socket.on('data_updated', (data) => {
-        console.log('📊 Data terupdate dari server:', data);
-        kanbanData = data;
-        initializeTable();
+    // Listen untuk update data dari server berdasarkan section
+    socket.on('data_updated_treatment', (data) => {
+        if (currentSection === 'TREATMENT') {
+            console.log('📊 Data Treatment terupdate dari server:', data);
+            kanbanData = data;
+            initializeTable();
+        }
     });
+    
+    socket.on('data_updated_stockfit', (data) => {
+        if (currentSection === 'STOCKFIT') {
+            console.log('📊 Data StockFit terupdate dari server:', data);
+            kanbanData = data;
+            initializeTable();
+        }
+    });
+}
+
+// Get storage key based on current section
+function getStorageKey() {
+    return currentSection === 'TREATMENT' ? STORAGE_KEY_TREATMENT : STORAGE_KEY_STOCKFIT;
 }
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if section is already selected
+    const savedSection = localStorage.getItem(SECTION_KEY);
+    
+    if (savedSection) {
+        currentSection = savedSection;
+        loadSectionData();
+        initializeSocket();
+        initializeTable();
+        setupEventListeners();
+        updateSectionLabel();
+    } else {
+        // Show section selection modal
+        showSectionModal();
+    }
+});
+
+// Show section selection modal
+function showSectionModal() {
+    sectionModal.style.display = 'block';
+}
+
+// Hide section selection modal
+function hideSectionModal() {
+    sectionModal.style.display = 'none';
+}
+
+// Select treatment area
+function selectTreatment() {
+    currentSection = 'TREATMENT';
+    localStorage.setItem(SECTION_KEY, currentSection);
+    loadSectionData();
+    hideSectionModal();
     initializeSocket();
     initializeTable();
     setupEventListeners();
-});
+    updateSectionLabel();
+}
+
+// Select stockfit area
+function selectStockfit() {
+    currentSection = 'STOCKFIT';
+    localStorage.setItem(SECTION_KEY, currentSection);
+    loadSectionData();
+    hideSectionModal();
+    initializeSocket();
+    initializeTable();
+    setupEventListeners();
+    updateSectionLabel();
+}
+
+// Load section data from localStorage
+function loadSectionData() {
+    const storageKey = getStorageKey();
+    const saved = localStorage.getItem(storageKey);
+    kanbanData = saved ? JSON.parse(saved) : {};
+}
+
+// Save section data to localStorage
+function saveSectionDataLocal() {
+    const storageKey = getStorageKey();
+    localStorage.setItem(storageKey, JSON.stringify(kanbanData));
+}
+
+// Update section label in header
+function updateSectionLabel() {
+    const sectionName = currentSection === 'TREATMENT' ? 'Treatment Area' : 'StockFit';
+    const icon = currentSection === 'TREATMENT' ? '🏥' : '📦';
+    sectionLabel.textContent = `${icon} ${sectionName}`;
+}
 
 // Initialize table
 function initializeTable() {
@@ -125,6 +217,9 @@ function setupEventListeners() {
         if (event.target === modal) {
             closeModal();
         }
+        if (event.target === sectionModal) {
+            // Don't allow closing by clicking outside for section selection
+        }
     };
     
     statusButtons.forEach(btn => {
@@ -136,27 +231,39 @@ function setupEventListeners() {
     });
     
     resetBtn.onclick = () => {
-        if (confirm('Apakah Anda yakin ingin mereset semua data? Tindakan ini tidak bisa dibatalkan.')) {
+        if (confirm('Apakah Anda yakin ingin mereset semua data di ' + (currentSection === 'TREATMENT' ? 'Treatment Area' : 'StockFit') + '? Tindakan ini tidak bisa dibatalkan.')) {
             resetAllData();
         }
     };
+    
+    switchSectionBtn.onclick = () => {
+        showSectionModal();
+    };
+    
+    treatmentBtn.onclick = selectTreatment;
+    stockfitBtn.onclick = selectStockfit;
 }
 
 // Update status
 function updateStatus(cellKey, status) {
     kanbanData[cellKey] = status;
+    saveSectionDataLocal();
     saveData();
     updateCell(cellKey, status);
 }
 
 // Save data to server via API
 function saveData() {
+    const sectionType = currentSection === 'TREATMENT' ? 'treatment' : 'stockfit';
     fetch('/api/data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(kanbanData)
+        body: JSON.stringify({
+            section: sectionType,
+            data: kanbanData
+        })
     })
     .then(response => response.json())
     .then(data => {
@@ -171,7 +278,8 @@ function saveData() {
 
 // Load data from server (called saat pertama connect)
 function loadData() {
-    fetch('/api/data')
+    const sectionType = currentSection === 'TREATMENT' ? 'treatment' : 'stockfit';
+    fetch('/api/data?section=' + sectionType)
     .then(response => response.json())
     .then(data => {
         kanbanData = data;
@@ -204,27 +312,30 @@ function updateCell(cellKey, status) {
 
 // Reset all data
 function resetAllData() {
-    if (confirm('Apakah Anda yakin ingin mereset semua data? Tindakan ini tidak bisa dibatalkan.')) {
-        fetch('/api/reset', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            }
+    const sectionType = currentSection === 'TREATMENT' ? 'treatment' : 'stockfit';
+    fetch('/api/reset', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            section: sectionType
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                kanbanData = {};
-                initializeTable();
-                alert('Semua data telah direset!');
-                console.log('✓ Data direset berhasil');
-            }
-        })
-        .catch(err => {
-            console.error('Error resetting data:', err);
-            alert('Gagal mereset data!');
-        });
-    }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            kanbanData = {};
+            saveSectionDataLocal();
+            initializeTable();
+            alert('Semua data ' + (currentSection === 'TREATMENT' ? 'Treatment Area' : 'StockFit') + ' telah direset!');
+            console.log('✓ Data direset berhasil');
+        }
+    })
+    .catch(err => {
+        console.error('Error resetting data:', err);
+        alert('Gagal mereset data!');
+    });
 }
 
 // Keyboard shortcuts

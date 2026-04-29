@@ -12,12 +12,18 @@
             <button id="resetBtn" class="reset-btn" title="Reset semua data">
                 <span>🔄</span>
             </button>
+            <button id="switchSectionBtn" class="switch-section-btn" title="Ganti area">
+                <span>🔀</span>
+            </button>
             <div class="logo-section">
                 <img src="LOGO DIAMOND HD.png" alt="Diamond Logo" class="diamond-logo">
                 <div class="company-info">
                     <h2>PT DIAMOND INTERNATIONAL INDONESIA</h2>
                     <p>Production Status Monitoring System</p>
                 </div>
+            </div>
+            <div class="section-indicator">
+                <span id="sectionLabel" class="section-label">Treatment Area</span>
             </div>
             <div class="live-indicator">
                 <span id="connectionDot" class="connection-dot online"></span>
@@ -53,6 +59,24 @@
                     <!-- Rows akan di-generate oleh JavaScript -->
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Modal untuk memilih section -->
+    <div id="sectionModal" class="modal section-modal">
+        <div class="modal-content section-modal-content">
+            <h2>Pilih Area</h2>
+            <p>Pilih area yang ingin Anda kelola:</p>
+            <div class="section-options">
+                <button id="treatmentBtn" class="section-option-btn treatment-btn">
+                    <span class="section-icon">🏥</span>
+                    <span class="section-name">Treatment Area</span>
+                </button>
+                <button id="stockfitBtn" class="section-option-btn stockfit-btn">
+                    <span class="section-icon">📦</span>
+                    <span class="section-name">StockFit</span>
+                </button>
+            </div>
         </div>
     </div>
 
