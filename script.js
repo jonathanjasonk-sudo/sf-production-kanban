@@ -74,13 +74,20 @@ function getStorageKey() {
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('📱 Initializing SF Kanban App...');
+    
     // Setup section selection buttons FIRST
     setupSectionButtons();
     
+    // Hide modal by default
+    sectionModal.classList.add('hidden');
+    
     // Check if section is already selected
     const savedSection = localStorage.getItem(SECTION_KEY);
+    console.log('💾 Saved section:', savedSection);
     
     if (savedSection) {
+        console.log('✓ Loading saved section:', savedSection);
         currentSection = savedSection;
         loadSectionData();
         initializeSocket();
@@ -88,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupEventListeners();
         updateSectionLabel();
     } else {
+        console.log('❓ No section selected, showing modal');
         // Show section selection modal
         showSectionModal();
     }
@@ -95,26 +103,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Setup section selection buttons (must be called in DOMContentLoaded)
 function setupSectionButtons() {
+    console.log('🔧 Setting up section buttons...');
     if (treatmentBtn) {
-        treatmentBtn.onclick = selectTreatment;
+        treatmentBtn.onclick = (e) => {
+            console.log('🏥 Treatment button clicked');
+            selectTreatment();
+        };
     }
     if (stockfitBtn) {
-        stockfitBtn.onclick = selectStockfit;
+        stockfitBtn.onclick = (e) => {
+            console.log('📦 StockFit button clicked');
+            selectStockfit();
+        };
     }
 }
 
 // Show section selection modal
 function showSectionModal() {
-    sectionModal.style.display = 'block';
+    sectionModal.classList.remove('hidden');
+    sectionModal.style.display = 'flex';
 }
 
 // Hide section selection modal
 function hideSectionModal() {
+    sectionModal.classList.add('hidden');
     sectionModal.style.display = 'none';
 }
 
 // Select treatment area
 function selectTreatment() {
+    console.log('✓ Selecting TREATMENT area...');
     currentSection = 'TREATMENT';
     localStorage.setItem(SECTION_KEY, currentSection);
     loadSectionData();
@@ -123,10 +141,12 @@ function selectTreatment() {
     initializeTable();
     setupEventListeners();
     updateSectionLabel();
+    console.log('✓ TREATMENT area initialized');
 }
 
 // Select stockfit area
 function selectStockfit() {
+    console.log('✓ Selecting STOCKFIT area...');
     currentSection = 'STOCKFIT';
     localStorage.setItem(SECTION_KEY, currentSection);
     loadSectionData();
@@ -135,6 +155,7 @@ function selectStockfit() {
     initializeTable();
     setupEventListeners();
     updateSectionLabel();
+    console.log('✓ STOCKFIT area initialized');
 }
 
 // Load section data from localStorage
@@ -155,10 +176,12 @@ function updateSectionLabel() {
     const sectionName = currentSection === 'TREATMENT' ? 'Treatment Area' : 'StockFit';
     const icon = currentSection === 'TREATMENT' ? '🏥' : '📦';
     sectionLabel.textContent = `${icon} ${sectionName}`;
+    console.log('🏷️  Section label updated:', sectionLabel.textContent);
 }
 
 // Initialize table
 function initializeTable() {
+    console.log('📊 Initializing table for section:', currentSection);
     tableBody.innerHTML = '';
     
     LINES.forEach(line => {
@@ -186,6 +209,8 @@ function initializeTable() {
         
         tableBody.appendChild(row);
     });
+    
+    console.log('✓ Table initialized with', LINES.length, 'lines');
 }
 
 // Get status label
