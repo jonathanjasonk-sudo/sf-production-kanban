@@ -44,7 +44,7 @@ body {
     box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 10px;
     animation: slideIn 0.6s ease-out;
     overflow: hidden;
 }
@@ -63,10 +63,10 @@ body {
 .header {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-bottom: 10px;
+    gap: 2px;
+    margin-bottom: 6px;
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 10px;
+    padding-bottom: 6px;
     position: relative;
 }
 
@@ -74,13 +74,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
-    min-height: 60px;
+    gap: 10px;
+    min-height: 45px;
 }
 
 .header-left {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     align-items: center;
 }
 
@@ -93,7 +93,7 @@ body {
 .header-right {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 3px;
     align-items: flex-end;
 }
 
@@ -104,21 +104,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    gap: 6px;
+    font-size: 14px;
     transition: all 0.3s ease;
 }
 
 .reset-btn {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+    padding: 6px 12px;
+    border-radius: 8px;
     background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
     color: white;
     box-shadow: var(--shadow-md);
     font-weight: bold;
     position: relative;
-    top: auto;
-    right: auto;
 }
 
 .reset-btn:hover {
@@ -130,16 +128,26 @@ body {
     transform: scale(0.95);
 }
 
+.btn-icon {
+    font-size: 16px;
+    display: inline-flex;
+}
+
+.btn-text {
+    font-size: 13px;
+    font-weight: 700;
+}
+
 .logo-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .diamond-logo {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     object-fit: contain;
     filter: drop-shadow(var(--shadow-sm));
     animation: float 3s ease-in-out infinite;
@@ -159,7 +167,7 @@ body {
 }
 
 .company-info h2 {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--primary-dark);
     margin: 0;
@@ -167,38 +175,37 @@ body {
 }
 
 .company-info p {
-    font-size: 11px;
+    font-size: 9px;
     color: var(--text-secondary);
-    margin: 2px 0 0 0;
+    margin: 1px 0 0 0;
     white-space: nowrap;
-}
-    }
 }
 
 .header h1 {
     color: var(--text-primary);
-    font-size: 28px;
-    margin: 6px 0 8px 0;
+    font-size: 20px;
+    margin: 2px 0 2px 0;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    text-align: center;
 }
 
 .info {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 6px;
     flex-wrap: wrap;
-    font-size: 12px;
+    font-size: 9px;
     color: var(--text-primary);
 }
 
 .info span {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     background: linear-gradient(135deg, #f8f9fa 0%, #f0f1f3 100%);
-    padding: 10px 18px;
-    border-radius: 25px;
+    padding: 4px 10px;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
     font-weight: 600;
     box-shadow: var(--shadow-sm);
@@ -214,8 +221,8 @@ body {
     flex: 1;
     overflow: auto;
     background: linear-gradient(180deg, #fafbfc 0%, #f5f7fa 100%);
-    border-radius: 15px;
-    padding: 15px;
+    border-radius: 12px;
+    padding: 10px;
     border: 1px solid var(--border-color);
 }
 
@@ -250,11 +257,11 @@ body {
 .status-table th {
     background: linear-gradient(135deg, #1e40af 0%, #0284c7 100%);
     color: white;
-    padding: 16px 12px;
+    padding: 6px 2px;
     text-align: center;
     font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.5px;
+    font-size: 8px;
+    letter-spacing: 0px;
     border-bottom: 3px solid var(--primary-dark);
     position: sticky;
     top: 0;
@@ -262,7 +269,7 @@ body {
 }
 
 .status-table td {
-    padding: 18px 12px;
+    padding: 6px 2px;
     text-align: center;
     border: 1px solid #e8ecf1;
     background: white;
@@ -288,25 +295,25 @@ body {
 .line-name {
     font-weight: 700;
     color: var(--primary-dark);
-    min-width: 60px;
-    font-size: 15px;
-    letter-spacing: 0.3px;
+    min-width: 35px;
+    font-size: 9px;
+    letter-spacing: 0px;
 }
 
 .status-circle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 65px;
-    height: 65px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 11px;
-    font-weight: 800;
-    border: 3px solid transparent;
+    font-size: 6px;
+    font-weight: 700;
+    border: 1px solid transparent;
     position: relative;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .status-circle:hover {
@@ -666,8 +673,8 @@ body {
     }
 
     .status-circle {
-        width: 50px;
-        height: 50px;
+        width: 35px;
+        height: 35px;
     }
 }
 
@@ -726,22 +733,21 @@ body {
     }
 }
 
-/* Live Indicator - Top Left */
+/* Live Indicator - Top Right */
 .live-indicator {
-    position: absolute;
-    top: 25px;
-    left: 25px;
+    position: static;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 12px;
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 20px;
-    font-size: 12px;
+    padding: 4px 10px;
+    background: rgba(39, 174, 96, 0.08);
+    border-radius: 12px;
+    font-size: 10px;
     font-weight: 700;
     color: #27ae60;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     z-index: 100;
+    white-space: nowrap;
 }
 
 .live-indicator .connection-dot {
@@ -902,11 +908,11 @@ body {
 /* Section Indicator in Header */
 .section-indicator {
     display: inline-block;
-    padding: 6px 12px;
+    padding: 4px 10px;
     background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-    border-radius: 15px;
+    border-radius: 12px;
     border: 1.5px solid var(--primary-color);
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
     color: var(--primary-dark);
     animation: slideDown 0.5s ease-out;
@@ -927,30 +933,28 @@ body {
 .section-label {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
 }
 }
 
 /* Switch Section Button */
 .switch-section-btn {
-    width: 45px;
-    height: 45px;
+    padding: 6px 12px;
     background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
     color: white;
     border: none;
-    border-radius: 50%;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
     font-weight: bold;
     z-index: 10;
     position: relative;
-    top: auto;
-    left: auto;
 }
 
 .switch-section-btn:hover {
