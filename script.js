@@ -1,9 +1,15 @@
-// Configuration
-const LINES = ['E3', 'E4', 'E5', 'E6'];
+// Configuration - Section-specific LINES
+const LINES_TREATMENT = ['C1'];
+const LINES_STOCKFIT = ['E3', 'E4', 'E5', 'E6'];
 const JAMS = ['JAM 1', 'JAM 2', 'JAM 3', 'JAM 4', 'JAM 5', 'JAM 6', 'JAM 7', 'JAM 8', 'JAM 9', 'JAM 10'];
 const STORAGE_KEY_TREATMENT = 'kanban_status_treatment';
 const STORAGE_KEY_STOCKFIT = 'kanban_status_stockfit';
 const SECTION_KEY = 'current_section';
+
+// Get lines based on current section
+function getLines() {
+    return currentSection === 'TREATMENT' ? LINES_TREATMENT : LINES_STOCKFIT;
+}
 
 // Initialize data
 let kanbanData = {};
@@ -183,6 +189,7 @@ function updateSectionLabel() {
 function initializeTable() {
     console.log('📊 Initializing table for section:', currentSection);
     tableBody.innerHTML = '';
+    const LINES = getLines();
     
     LINES.forEach(line => {
         const row = document.createElement('tr');
@@ -210,7 +217,7 @@ function initializeTable() {
         tableBody.appendChild(row);
     });
     
-    console.log('✓ Table initialized with', LINES.length, 'lines');
+    console.log('✓ Table initialized with', LINES.length, 'lines for', currentSection);
 }
 
 // Get status label
@@ -329,6 +336,7 @@ function loadData() {
 function updateCell(cellKey, status) {
     const [line, jam] = cellKey.split('-');
     const jamIndex = parseInt(jam);
+    const LINES = getLines();
     const rowIndex = LINES.indexOf(line);
     
     if (rowIndex !== -1) {
