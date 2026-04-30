@@ -183,10 +183,10 @@ body {
 
 .header h1 {
     color: var(--text-primary);
-    font-size: 18px;
+    font-size: 17px;
     margin: 0px 0 0px 0;
     font-weight: 700;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.3px;
     text-align: center;
 }
 
@@ -223,7 +223,7 @@ body {
     overflow: auto;
     background: linear-gradient(180deg, #fafbfc 0%, #f5f7fa 100%);
     border-radius: 12px;
-    padding: 8px;
+    padding: 6px;
     border: 1px solid var(--border-color);
     min-height: 0;
 }
@@ -259,11 +259,11 @@ body {
 .status-table th {
     background: linear-gradient(135deg, #1e40af 0%, #0284c7 100%);
     color: white;
-    padding: 7px 3px;
+    padding: 12px 8px;
     text-align: center;
     font-weight: 700;
-    font-size: 8px;
-    letter-spacing: 0px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
     border-bottom: 3px solid var(--primary-dark);
     position: sticky;
     top: 0;
@@ -271,7 +271,7 @@ body {
 }
 
 .status-table td {
-    padding: 8px 4px;
+    padding: 16px 8px;
     text-align: center;
     border: 1px solid #e8ecf1;
     background: white;
@@ -297,25 +297,25 @@ body {
 .line-name {
     font-weight: 700;
     color: var(--primary-dark);
-    min-width: 35px;
-    font-size: 9px;
-    letter-spacing: 0px;
+    min-width: 50px;
+    font-size: 14px;
+    letter-spacing: 0.1px;
 }
 
 .status-circle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 8px;
+    font-size: 14px;
     font-weight: 700;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     position: relative;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .status-circle:hover {
