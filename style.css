@@ -44,7 +44,7 @@ body {
     box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 8px;
     animation: slideIn 0.6s ease-out;
     overflow: hidden;
 }
@@ -63,10 +63,10 @@ body {
 .header {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    margin-bottom: 6px;
+    gap: 1px;
+    margin-bottom: 4px;
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 6px;
+    padding-bottom: 4px;
     position: relative;
 }
 
@@ -74,8 +74,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    min-height: 45px;
+    gap: 8px;
+    min-height: 42px;
 }
 
 .header-left {
@@ -183,29 +183,30 @@ body {
 
 .header h1 {
     color: var(--text-primary);
-    font-size: 20px;
-    margin: 2px 0 2px 0;
+    font-size: 18px;
+    margin: 0px 0 0px 0;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
     text-align: center;
 }
 
 .info {
     display: flex;
     justify-content: center;
-    gap: 6px;
+    gap: 5px;
     flex-wrap: wrap;
-    font-size: 9px;
+    font-size: 8px;
     color: var(--text-primary);
+    margin: 0;
 }
 
 .info span {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
     background: linear-gradient(135deg, #f8f9fa 0%, #f0f1f3 100%);
-    padding: 4px 10px;
-    border-radius: 12px;
+    padding: 3px 8px;
+    border-radius: 10px;
     border: 1px solid var(--border-color);
     font-weight: 600;
     box-shadow: var(--shadow-sm);
@@ -222,8 +223,9 @@ body {
     overflow: auto;
     background: linear-gradient(180deg, #fafbfc 0%, #f5f7fa 100%);
     border-radius: 12px;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid var(--border-color);
+    min-height: 0;
 }
 
 .kanban-board::-webkit-scrollbar {
@@ -257,7 +259,7 @@ body {
 .status-table th {
     background: linear-gradient(135deg, #1e40af 0%, #0284c7 100%);
     color: white;
-    padding: 6px 2px;
+    padding: 7px 3px;
     text-align: center;
     font-weight: 700;
     font-size: 8px;
@@ -269,7 +271,7 @@ body {
 }
 
 .status-table td {
-    padding: 6px 2px;
+    padding: 8px 4px;
     text-align: center;
     border: 1px solid #e8ecf1;
     background: white;
@@ -304,16 +306,16 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 35px;
-    height: 35px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 6px;
+    font-size: 8px;
     font-weight: 700;
     border: 1px solid transparent;
     position: relative;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .status-circle:hover {
