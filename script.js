@@ -15,6 +15,7 @@ function getLines() {
 let kanbanData = {};
 let selectedCell = null;
 let currentSection = null; // 'TREATMENT' or 'STOCKFIT'
+let isFullscreen = false; // Track fullscreen state
 
 // WebSocket connection
 let socket = null;
@@ -29,6 +30,7 @@ const tableBody = document.getElementById('tableBody');
 const statusButtons = document.querySelectorAll('.status-btn');
 const resetBtn = document.getElementById('resetBtn');
 const switchSectionBtn = document.getElementById('switchSectionBtn');
+const fullscreenBtn = document.getElementById('fullscreenBtn');
 const treatmentBtn = document.getElementById('treatmentBtn');
 const stockfitBtn = document.getElementById('stockfitBtn');
 const sectionLabel = document.getElementById('sectionLabel');
@@ -254,6 +256,23 @@ function closeModal() {
     selectedCell = null;
 }
 
+// Toggle fullscreen mode
+function toggleFullscreen() {
+    isFullscreen = !isFullscreen;
+    
+    if (isFullscreen) {
+        document.body.classList.add('fullscreen-mode');
+        const btnText = fullscreenBtn.querySelector('.btn-text');
+        btnText.textContent = 'exit Full Screen';
+        console.log('✓ Fullscreen mode ON');
+    } else {
+        document.body.classList.remove('fullscreen-mode');
+        const btnText = fullscreenBtn.querySelector('.btn-text');
+        btnText.textContent = 'Full Screen';
+        console.log('✓ Fullscreen mode OFF');
+    }
+}
+
 // Setup event listeners
 function setupEventListeners() {
     closeBtn.onclick = closeModal;
@@ -283,6 +302,10 @@ function setupEventListeners() {
     
     switchSectionBtn.onclick = () => {
         showSectionModal();
+    };
+    
+    fullscreenBtn.onclick = () => {
+        toggleFullscreen();
     };
 }
 
