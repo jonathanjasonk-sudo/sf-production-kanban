@@ -360,25 +360,14 @@ body {
 }
 
 /* Fullscreen Mode */
-body.fullscreen-mode {
-    padding: 0;
+body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #1e40af 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
-
-body.fullscreen-mode .container {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-    padding: 12px;
-    margin: 0;
-}
-
-body.fullscreen-mode .status-circle {
-    width: 50px;
-    height: 50px;
-    font-size: 9px;
-}
-
-/* Status Colors */
 .status-circle.green {
     background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
     color: white;
