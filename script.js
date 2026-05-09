@@ -1,5 +1,5 @@
 // Configuration - Section-specific LINES
-const LINES_TREATMENT = ['C1'];
+const LINES_TREATMENT = ['C1', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6'];
 const LINES_STOCKFIT = ['E3', 'E4', 'E5', 'E6'];
 const JAMS = ['JAM 1', 'JAM 2', 'JAM 3', 'JAM 4', 'JAM 5', 'JAM 6', 'JAM 7', 'JAM 8', 'JAM 9', 'JAM 10'];
 const STORAGE_KEY_TREATMENT = 'kanban_status_treatment';

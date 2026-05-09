@@ -34,7 +34,7 @@ git push -u origin main
 Railway akan otomatis:
 - Detect `package.json` dan install dependencies
 - Run `npm start` (sesuai dengan script di package.json)
-- Assign domain (contoh: `sf-kanban-prod.up.railway.app`)
+- Assign domain (contoh: `https://sf-kanban.up.railway.app/`)
 
 ## Selesai! ✅
 
